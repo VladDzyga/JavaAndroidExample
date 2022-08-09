@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginForm">
+
+    <fragment
+        android:id="@+id/firstStartForm"
+        android:name="com.example.cashmanager.forms.FirstStartForm"
+        android:label="FirstStartForm" />
+
+    <fragment
+        android:id="@+id/loginForm"
+        android:name="com.example.cashmanager.forms.LoginForm"
+        android:label="LoginForm" />
+
+    <fragment
+        android:id="@+id/mainForm"
+        android:name="com.example.cashmanager.forms.MainForm"
+        android:label="MainForm" />
+
+    <fragment
+        android:id="@+id/detailInfoForm"
+        android:name="com.example.cashmanager.forms.DetailInfoForm"
+        android:label="DetailInfoForm" />
+
+    <fragment
+        android:id="@+id/newRecordForm"
+        android:name="com.example.cashmanager.forms.NewRecordForm"
+        android:label="NewRecordForm" />
+
+</navigation>

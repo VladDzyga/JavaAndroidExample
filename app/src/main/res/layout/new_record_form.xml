@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="vm"
+            type="com.example.cashmanager.forms.NewRecordFormVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/create"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#2964C2"
+                android:paddingTop="15dp"
+                android:paddingBottom="20dp"
+                android:text="Новий запис"
+                android:fontFamily="sans-serif-medium"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="62dp"
+                android:layout_height="68dp"
+                android:backgroundTint="#00FFFFFF"
+                android:onClick="@{()->vm.onBackClick()}"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="62dp"
+                android:layout_height="68dp"
+                android:backgroundTint="#00FFFFFF"
+                android:onClick="@{()->vm.onAddClick()}"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_check_24" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name"
+            error="@{vm.nameError}"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            app:hintEnabled="false"
+            android:layout_margin="10dp"
+            app:boxStrokeColor="#2964C2"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="sans-serif-medium"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:hint="Назва"
+                android:text="@{vm.name}"
+                android:inputType="text">
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup
+            android:id="@+id/radio_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/increase"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    android:fontFamily="sans-serif-medium"
+                    android:buttonTint="#2964C2"
+                    android:text="Прибуток"
+                    android:gravity="center"
+                    android:onClick="@{()->vm.onRadioClick()}" />
+
+                <RadioButton
+                    android:id="@+id/decrease"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="match_parent"
+                    android:buttonTint="#2964C2"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Витрати"
+                    android:gravity="center"
+                    android:onClick="@{()->vm.onRadioClick()}"/>
+
+        </RadioGroup>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/values"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:layout_constraintTop_toBottomOf="@id/radio_buttons"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/value_change"
+                error="@{vm.valueError}"
+                android:layout_width="0dp"
+                app:layout_constraintVertical_weight="0.5"
+                android:layout_height="80dp"
+                android:fontFamily="sans-serif-medium"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/value_result"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/value_change_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:hint="Значення"
+                    android:text="@{vm.balanceChange}"
+                    android:inputType="text">
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/value_result"
+                android:layout_width="0dp"
+                app:layout_constraintVertical_weight="0.5"
+                android:layout_height="50dp"
+                android:singleLine="true"
+                android:layout_marginTop="8dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="20sp"
+                android:text="@{vm.balanceResult}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/value_change"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/description"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/values"
+            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/description_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Опис (необов'язково)"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{vm.description}"
+                android:lines="20"
+                android:gravity="top">
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

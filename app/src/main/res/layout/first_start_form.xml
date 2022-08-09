@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="vm"
+            type="com.example.cashmanager.forms.FirstStartFormVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/logo"
+            android:layout_marginHorizontal="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/new_password_layout"
+            error="@{vm.passwordError}"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="30dp"
+
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/new_password"
+                android:paddingStart="5dp"
+                android:hint="Новий пароль"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{vm.newPassword}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:focusableInTouchMode="true"
+                android:singleLine="true"
+                android:inputType="textPassword">
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/confirm_password_layout"
+            error="@{vm.confirmError}"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="30dp"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/new_password_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirm_password"
+                android:paddingStart="5dp"
+                android:hint="Підтвердження паролю"
+                android:fontFamily="sans-serif-medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:focusableInTouchMode="true"
+                android:text="@{vm.confirmPassword}"
+                android:singleLine="true"
+                android:inputType="textPassword">
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/create_password"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="50dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:textAllCaps="true"
+            android:text="Створити пароль"
+            app:cornerRadius="30dp"
+            app:strokeColor="#2964C2"
+            app:strokeWidth="2dp"
+            app:backgroundTint="@color/white"
+            android:onClick="@{() -> vm.onClick()}"
+            app:layout_constraintTop_toBottomOf="@id/confirm_password_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
